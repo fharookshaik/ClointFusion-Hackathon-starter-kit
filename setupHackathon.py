@@ -71,7 +71,7 @@ def getToken():
 
 def launch_website(token):
     cf.message_counter_down_timer(strMsg='Opening Browser',start_value=3)
-    cf.launch_website_h('https://colab.research.google.com/drive/1Gya0-zfeiecWl4YslqompL89NFBxkm3G')
+    cf.launch_website_h('https://colab.research.google.com/drive/1ZUpWVJCquGVK2B6T6e3_NK1xPwb2OeBo?usp=sharing')
 
     d = read_config()
     emailID = d['emailid']
