@@ -36,7 +36,7 @@ def get_exe_file():
         with open(bat_temp_file,'w+') as fp:
             fp.write('@ECHO OFF')
             fp.write('\n start cmd /c "pip install --upgrade jupyter_http_over_ws>=0.0.7 && jupyter serverextension enable --py jupyter_http_over_ws" ')
-            fp.write('''\n start cmd /k "TITLE ClointSetup & jupyter notebook --NotebookApp.allow_origin='https://colab.research.google.com' --port=8888 --NotebookApp.port_retries=0" ''')
+            fp.write('''\n start cmd /k "TITLE ClointSetup & jupyter notebook --NotebookApp.open_browser=False --NotebookApp.allow_origin='https://colab.research.google.com' --port=8888 --NotebookApp.port_retries=0" ''')
     
             fp.close()
 
@@ -79,6 +79,7 @@ def launch_website(token):
     # emailID = cf.gui_get_any_input_from_user(msgForUser='Please enter your emailID: ',mandatory_field=True)
     # password = cf.gui_get_any_input_from_user(msgForUser='Enter Your Password (Stores Temporarily): ',password=True,mandatory_field=True)
 
+    cf.browser_mouse_click_h('Sign in')
     cf.browser_write_h(Value=emailID,User_Visible_Text_Element='Email or phone')
     cf.browser_mouse_click_h(User_Visible_Text_Element='Next')
     cf.browser_wait_until_h(text='Enter Your password')
@@ -112,11 +113,11 @@ if __name__ == "__main__":
         jupyterNotebookwindow,cmdwindow = None,None
 
         for i in l:
-            if i[:9] == "Home Page":
-                jupyterNotebookwindow = i
-            elif i[:11] == "ClointSetup":
+            # if i[:9] == "Home Page":
+            #     jupyterNotebookwindow = i
+            if i[:11] == "ClointSetup":
                 cmdwindow = i
-        cf.window_minimize_windows(windowName=jupyterNotebookwindow)
+        # cf.window_minimize_windows(windowName=jupyterNotebookwindow)
         cf.window_activate_and_maximize_windows(windowName=cmdwindow)
 
         token = getToken()
